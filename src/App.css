@@ -1,6 +1,6 @@
-.App {
+.content {
   text-align: center;
-  margin-top: 25vh;
+  margin-top: 18vh;
 }
 
 .token-selector {
@@ -9,4 +9,10 @@
 
 .icon {
   width: 15px;
+}
+
+.giphy {
+  width: 67px;
+  height: 67px;
+  margin: 20px;
 }

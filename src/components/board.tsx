@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import flattenBoard from "../utils/flattenBoard";
 import unflattenBoard from "../utils/unflattenBoard";
@@ -14,9 +14,10 @@ const boardCells = [
 
 type boardProps = {
   playerToken: string;
+  setThinking: Dispatch<SetStateAction<boolean>>;
 };
 
-function Board({ playerToken }: boardProps) {
+function Board({ playerToken, setThinking }: boardProps) {
   const [cells, setCells] = useState<(number | string)[][]>(boardCells);
   const [botToken, setBotToken] = useState<string>("");
   const botSpot = useSelector((state: any) => state.board.spot);
@@ -28,6 +29,8 @@ function Board({ playerToken }: boardProps) {
     else if (playerToken === "") reset();
     else setBotToken("X");
   }, [playerToken]);
+
+  useEffect(() => setThinking(!isBotReady), [isBotReady]);
 
   const selectCell = async (
     cell: number | string,
