@@ -43,8 +43,10 @@ function Board({ playerToken }: boardProps) {
       });
     }
     setCells(updatedCells);
-    const aiSpot = await post(URLS.AI_BOT, flattenBoard(cells), playerToken);
-    selectBotCell(aiSpot);
+    if (!isOneSpotLeft()) {
+      const aiSpot = await post(URLS.AI_BOT, flattenBoard(cells), playerToken);
+      selectBotCell(aiSpot);
+    }
   };
 
   const selectBotCell = (spot: number) => {
@@ -62,6 +64,15 @@ function Board({ playerToken }: boardProps) {
       [3, 4, 5],
       [6, 7, 8],
     ]);
+
+  const isOneSpotLeft = () => {
+    const flatBoard = flattenBoard(cells);
+    const remainingSpots: number[] = flatBoard.filter(
+      (spot) => typeof spot !== "string"
+    ) as number[];
+    if (remainingSpots.length <= 1) return true;
+    return false;
+  };
 
   return (
     <div className="board">
