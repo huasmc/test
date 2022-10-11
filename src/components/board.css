@@ -1,7 +1,32 @@
 .cell {
-  border: 1px solid white;
   height: 180px;
   width: 180px;
+}
+
+.cell2 {
+  border-bottom: 7px solid rgb(107, 107, 107);
+}
+
+.cell1 {
+  border-right: 7px solid rgb(107, 107, 107);
+  border-bottom: 7px solid rgb(107, 107, 107);
+}
+
+.cell0 {
+  border-right: 7px solid rgb(107, 107, 107);
+  border-bottom: 7px solid rgb(107, 107, 107);
+}
+
+.row2 > .cell0 {
+  border-bottom: 0;
+}
+
+.row2 > .cell1 {
+  border-bottom: 0;
+}
+
+.row2 > .cell2 {
+  border-bottom: 0;
 }
 
 .token {

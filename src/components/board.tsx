@@ -58,14 +58,16 @@ function Board({ playerToken }: boardProps) {
   return (
     <div className="board">
       {cells.map((row, index) => (
-        <Row key={index}>
+        <Row className={`row${index}`} key={index}>
           {row.map((cell, index) => (
             <Col
-              className="cell"
+              className={`cell cell${index}`}
               key={index}
               onClick={() => selectCell(cell, index, false)}
             >
-              <span className="text token">{cell}</span>
+              <span className="text token">
+                {typeof cell === "string" ? cell : ""}
+              </span>
             </Col>
           ))}
         </Row>
