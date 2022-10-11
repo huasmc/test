@@ -1,0 +1,13 @@
+.cell {
+  border: 1px solid white;
+  height: 180px;
+  width: 180px;
+}
+
+.token {
+  font-size: 100px;
+}
+
+.board {
+  padding: 160px 550px;
+}
