@@ -11,7 +11,11 @@ function App() {
     <div className="App">
       <Row className="token-selector">
         <Col xs={6}>
-          <h2>Select your token:</h2>
+          <h3>
+            {playerToken === ""
+              ? "SELECT YOUR TOKEN:"
+              : `YOUR TOKEN: ${playerToken}`}
+          </h3>
         </Col>
         <Col>
           <button

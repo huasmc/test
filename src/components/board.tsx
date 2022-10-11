@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import post from "../service/fetch";
-import URLS from "../service/urls";
 import flattenBoard from "../utils/flattenBoard";
 import unflattenBoard from "../utils/unflattenBoard";
+import { useDispatch, useSelector } from "react-redux";
 import "./board.css";
+import { fetchBotSpot } from "./boardSlice";
 
 const boardCells = [
   [0, 1, 2],
@@ -19,6 +19,9 @@ type boardProps = {
 function Board({ playerToken }: boardProps) {
   const [cells, setCells] = useState<(number | string)[][]>(boardCells);
   const [botToken, setBotToken] = useState<string>("");
+  const botSpot = useSelector((state: any) => state.board.spot);
+  const isBotReady = useSelector((state: any) => state.board.ready);
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     if (playerToken === "X") setBotToken("O");
@@ -31,7 +34,7 @@ function Board({ playerToken }: boardProps) {
     index: number,
     bot: boolean
   ) => {
-    if (playerToken === "") return;
+    if (playerToken === "" || !isBotReady) return;
     let updatedCells: (number | string)[][] = [[]];
     if (!bot) {
       if (typeof cell === "string") return;
@@ -44,8 +47,7 @@ function Board({ playerToken }: boardProps) {
     }
     setCells(updatedCells);
     if (!isOneSpotLeft()) {
-      const aiSpot = await post(URLS.AI_BOT, flattenBoard(cells), playerToken);
-      selectBotCell(aiSpot);
+      dispatch(fetchBotSpot({ board: flattenBoard(cells), playerToken }));
     }
   };
 
@@ -57,6 +59,10 @@ function Board({ playerToken }: boardProps) {
     });
     setCells(unflattenBoard(newFlatBoard, 3));
   };
+
+  useEffect(() => {
+    selectBotCell(botSpot);
+  }, [botSpot]);
 
   const reset = () =>
     setCells([
