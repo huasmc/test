@@ -3,9 +3,12 @@ const post = async (
   board: (number | string)[],
   player_token: string
 ) => {
+  let formData = new FormData();
+  formData.append("board", JSON.stringify(board));
+  formData.append("player_token", player_token);
   const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify({ board: board, player_token: player_token }),
+    body: formData,
+    method: "post",
   });
   return response.json();
 };
