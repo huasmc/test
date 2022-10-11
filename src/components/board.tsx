@@ -22,6 +22,7 @@ function Board({ playerToken }: boardProps) {
 
   useEffect(() => {
     if (playerToken === "X") setBotToken("O");
+    else if (playerToken === "") reset();
     else setBotToken("X");
   }, [playerToken]);
 
@@ -54,6 +55,13 @@ function Board({ playerToken }: boardProps) {
     });
     setCells(unflattenBoard(newFlatBoard, 3));
   };
+
+  const reset = () =>
+    setCells([
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+    ]);
 
   return (
     <div className="board">

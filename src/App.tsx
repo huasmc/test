@@ -5,6 +5,8 @@ import { useState } from "react";
 
 function App() {
   const [playerToken, setPlayerToken] = useState<string>("");
+
+  const resetToken = () => setPlayerToken("");
   return (
     <div className="App">
       <Row className="token-selector">
@@ -25,6 +27,11 @@ function App() {
             disabled={playerToken !== ""}
           >
             O
+          </button>
+        </Col>
+        <Col>
+          <button>
+            <img alt="" src="reset.png" className="icon" onClick={resetToken} />
           </button>
         </Col>
       </Row>
