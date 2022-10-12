@@ -6,15 +6,17 @@
 .blink-cursor::after {
   content: "";
   display: inline-block;
-  background-color: #606060;
-  width: 3px;
+  background-color: gray;
+  width: 6px;
   height: 15px;
+  background-color: #606060;
   -webkit-animation: blink 1s step-end infinite;
   animation: blink 1s step-end infinite;
 }
 
-.lime {
-  color: lime;
+.feed-item {
+  color: gray;
+  min-width: 219px;
 }
 
 @-webkit-keyframes blink {

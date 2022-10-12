@@ -101,7 +101,7 @@ function Board({ playerToken, setThinking }: boardProps) {
               key={index}
               onClick={() => selectCell(cell, index, false)}
             >
-              <span className="text token">
+              <span className="lime token">
                 {typeof cell === "string" ? cell : ""}
               </span>
             </Col>

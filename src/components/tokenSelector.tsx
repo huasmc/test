@@ -1,6 +1,5 @@
 import "../App.css";
 import { Row, Col } from "react-bootstrap";
-import { useState } from "react";
 
 type tokenSelectorProps = {
   playerToken: string;
@@ -16,7 +15,7 @@ function TokenSelector({
   return (
     <Row className="token-selector">
       <Col xs={6}>
-        <h3>
+        <h3 className="" style={{ color: "blueviolet" }}>
           {playerToken === ""
             ? "SELECT YOUR TOKEN:"
             : `YOUR TOKEN: ${playerToken}`}

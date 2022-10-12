@@ -13,10 +13,13 @@ function App() {
   return (
     <div className="App">
       <iframe
-        src={thinking ? "https://giphy.com/embed/ofyx9DjUuFGPC" : ""}
+        src={thinking ? "https://giphy.com/embed/ofyx9DjUuFGPC" : "load.jpg"}
         className="giphy"
+        scrolling="no"
       />
-
+      <a href="https://github.com/huasmc/tic-tac-toe-react-ts" target="_blank">
+        <img id="gh-logo" alt="" src="github.png" />
+      </a>
       <div className="content">
         <Row>
           <Col xs={3}>
@@ -34,6 +37,20 @@ function App() {
           <Col xs={4} />
         </Row>
       </div>
+      <Row>
+        <div
+          style={{
+            width: "100vw",
+            height: "2px",
+            marginTop: "22vh auto",
+            display: "flex",
+            justifyContent: "center",
+            color: "gray",
+          }}
+        >
+          <span></span>
+        </div>
+      </Row>
     </div>
   );
 }

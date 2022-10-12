@@ -15,7 +15,7 @@ function Feed() {
             }}
           >
             {feed.map((item: any, index: number) => (
-              <li key={index} style={{ color: "gray", minWidth: "219px" }}>
+              <li key={index} className="feed-item">
                 <div
                   className={
                     index === feed.length - 1 ? "blink-cursor lime" : ""
