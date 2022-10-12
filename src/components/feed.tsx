@@ -5,7 +5,7 @@ import "./feed.css";
 function Feed() {
   const feed = useSelector((state: any) => state.board.feed);
   return (
-    <Row>
+    <Row className="feed">
       <Col xs={6}>
         {feed.length > 0 && (
           <ul

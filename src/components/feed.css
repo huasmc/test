@@ -1,3 +1,7 @@
+.feed {
+  display: flex;
+  justify-content: "center";
+}
 .blink-cursor {
   position: relative;
   display: inline-block;

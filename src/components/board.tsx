@@ -92,7 +92,7 @@ function Board({ playerToken, setThinking }: boardProps) {
   };
 
   return (
-    <div className="board">
+    <div>
       {cells.map((row, index) => (
         <Row className={`row${index}`} key={index}>
           {row.map((cell, index) => (

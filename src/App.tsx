@@ -22,10 +22,14 @@ function App() {
       </a>
       <div className="content">
         <Row>
-          <Col xs={3}>
+          <Col xs={{ span: 3, order: 3 }} sm={{ span: 3, order: 1 }}>
             <Feed />
           </Col>
-          <Col xs={6}>
+          <Col
+            xs={{ span: 7, order: 2 }}
+            sm={{ span: 7, order: 2 }}
+            className="board"
+          >
             <TokenSelector
               playerToken={playerToken}
               setPlayerToken={setPlayerToken}
@@ -34,7 +38,7 @@ function App() {
 
             <Board playerToken={playerToken} setThinking={setThinking} />
           </Col>
-          <Col xs={4} />
+          <Col xs={{ span: 4, order: 1 }} sm={{ span: 4, order: 3 }} />
         </Row>
       </div>
       <Row>

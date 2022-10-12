@@ -29,3 +29,9 @@
   right: 20px;
   top: 20px;
 }
+
+.board {
+  /* padding: 27px 100px; */
+  min-width: 730px;
+  max-width: 730px;
+}
