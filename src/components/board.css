@@ -29,6 +29,12 @@
   border-bottom: 0;
 }
 
+@media only screen and (min-width: 400px) {
+  .board {
+    padding: 27px 550px;
+  }
+}
 .token {
   font-size: 100px;
+  margin: 0 20%;
 }
