@@ -17,8 +17,15 @@ export const fetchBotSpot = createAsyncThunk(
 
 const boardSlice = createSlice({
   name: "users",
-  initialState: { ready: true, spot: "" },
-  reducers: {},
+  initialState: { ready: true, spot: "", feed: [] },
+  reducers: {
+    addFeed: (state: any, { payload }) => {
+      state.feed.push(payload);
+    },
+    resetFeed: (state: any) => {
+      state.feed = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchBotSpot.fulfilled, (state, { payload }) => {
       state.spot = payload;
@@ -32,5 +39,7 @@ const boardSlice = createSlice({
     });
   },
 });
+
+export const { addFeed, resetFeed } = boardSlice.actions;
 
 export default boardSlice.reducer;

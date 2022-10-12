@@ -2,6 +2,8 @@ import "./App.css";
 import Board from "./components/board";
 import { useState } from "react";
 import TokenSelector from "./components/tokenSelector";
+import Feed from "./components/feed";
+import { Row, Col } from "react-bootstrap";
 
 function App() {
   const [playerToken, setPlayerToken] = useState<string>("");
@@ -14,13 +16,23 @@ function App() {
         src={thinking ? "https://giphy.com/embed/ofyx9DjUuFGPC" : ""}
         className="giphy"
       />
+
       <div className="content">
-        <TokenSelector
-          playerToken={playerToken}
-          setPlayerToken={setPlayerToken}
-          resetToken={resetToken}
-        />
-        <Board playerToken={playerToken} setThinking={setThinking} />
+        <Row>
+          <Col xs={3}>
+            <Feed />
+          </Col>
+          <Col xs={6}>
+            <TokenSelector
+              playerToken={playerToken}
+              setPlayerToken={setPlayerToken}
+              resetToken={resetToken}
+            />
+
+            <Board playerToken={playerToken} setThinking={setThinking} />
+          </Col>
+          <Col xs={4} />
+        </Row>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 .content {
   text-align: center;
   margin-top: 18vh;
+  font-family: monospace;
 }
 
 .token-selector {
-  padding: 0 500px;
+  padding: 0 50px;
 }
 
 .icon {

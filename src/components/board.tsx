@@ -4,7 +4,7 @@ import flattenBoard from "../utils/flattenBoard";
 import unflattenBoard from "../utils/unflattenBoard";
 import { useDispatch, useSelector } from "react-redux";
 import "./board.css";
-import { fetchBotSpot } from "./boardSlice";
+import { addFeed, fetchBotSpot, resetFeed } from "./boardSlice";
 
 const boardCells = [
   [0, 1, 2],
@@ -25,8 +25,10 @@ function Board({ playerToken, setThinking }: boardProps) {
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    if (playerToken === "X") setBotToken("O");
-    else if (playerToken === "") reset();
+    if (playerToken) dispatch(addFeed("Tokens selected"));
+    if (playerToken === "X") {
+      setBotToken("O");
+    } else if (playerToken === "") reset();
     else setBotToken("X");
   }, [playerToken]);
 
@@ -44,6 +46,7 @@ function Board({ playerToken, setThinking }: boardProps) {
       updatedCells = cells.map((row: (number | string)[]) => {
         if (row[index] === cell) {
           row[index] = playerToken;
+          dispatch(addFeed(`Player: ${playerToken} has played`));
         }
         return row;
       });
@@ -57,7 +60,10 @@ function Board({ playerToken, setThinking }: boardProps) {
   const selectBotCell = (spot: number) => {
     const flatBoard = flattenBoard(cells);
     const newFlatBoard = flatBoard.map((cell, index) => {
-      if (index === spot) cell = botToken;
+      if (index === spot) {
+        cell = botToken;
+        dispatch(addFeed(`Player: ${botToken} has played`));
+      }
       return cell;
     });
     setCells(unflattenBoard(newFlatBoard, 3));
@@ -67,12 +73,14 @@ function Board({ playerToken, setThinking }: boardProps) {
     selectBotCell(botSpot);
   }, [botSpot]);
 
-  const reset = () =>
+  const reset = () => {
     setCells([
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
     ]);
+    dispatch(resetFeed());
+  };
 
   const isOneSpotLeft = () => {
     const flatBoard = flattenBoard(cells);
